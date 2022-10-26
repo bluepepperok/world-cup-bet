@@ -1,0 +1,29 @@
+node_modules
+
+.DS_Store
+
+artifacts
+
+cache
+
+/contracts/aux
+
+#Contracts deployment
+Contract/deployment/
+
+#frontend
+/frontend/node_modules
+/App/node_modules
+App/.next
+
+#frontend env vars
+App/.env.local
+App/.env.development
+App/.env.production
+
+#gcloud config
+App/.gcloudignore
+App/app.yaml
+
+
+

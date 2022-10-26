@@ -1,0 +1,47 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+.team_bet {
+  cursor: pointer;
+}
+ {
+}
+
+.team_bet_selected {
+  background-color: #ffd9007c !important;
+  cursor: pointer;
+}
+
+.balance_not_ok {
+  color: #ff2f2f;
+  font-weight: 600;
+}
+
+.balance_ok {
+  color: #049606;
+  font-weight: 600;
+}
