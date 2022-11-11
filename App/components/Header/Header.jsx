@@ -66,6 +66,7 @@ export default function Header() {
     const chainId = await ethereum.request({ method: "eth_chainId" });
     if (chainId !== process.env.NEXT_PUBLIC_NETWORK_ID) {
       setWrongNetwork(true);
+
       return;
     }
 
@@ -211,7 +212,10 @@ export default function Header() {
 
               {connectedGlobal && wrongNetwork && (
                 <span style={{ color: "red", fontSize: "14px", marginRight: "15px" }}>
-                  Check your network in Metamask is Mainnet{" "}
+                  Please change the network in Metamask to{" "}
+                  {process.env.NEXT_PUBLIC_NETWORK.substring(0, 1).toUpperCase() +
+                    process.env.NEXT_PUBLIC_NETWORK.substring(1, process.env.NEXT_PUBLIC_NETWORK.length) +
+                    " "}
                 </span>
               )}
               <a

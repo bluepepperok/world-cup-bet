@@ -189,6 +189,12 @@ export default function Home() {
       return;
     }
 
+    //Check the network is correct
+    const chainId = await ethereum.request({ method: "eth_chainId" });
+    if (chainId !== process.env.NEXT_PUBLIC_NETWORK_ID) {
+      return;
+    }
+
     //Make transaction
     const provider = new ethers.providers.Web3Provider(window.ethereum); // Metamask
 
