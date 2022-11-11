@@ -163,7 +163,7 @@ export default function Home() {
     // Check if we already checked for what team we bet.
     // If none is 0, if we don't know yet is -1.
     if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
-      setBetResult("Not enough balance");
+      setBetResult("Not enough wDoge balance");
       return;
     }
 
@@ -300,9 +300,9 @@ export default function Home() {
       {!contractConexionFailure && jackpot != "" && (
         <Row>
           <Col className="text-center mt-4">
-            <span> Jackpot: Ɖ{jackpot}</span>
+            <span> Jackpot: wDoge{jackpot}</span>
             <br></br>
-            <span>Bet Fixed Amount: Ɖ{fixedBetAmountGlobal}</span>
+            <span>Bet Amount: {fixedBetAmountGlobal} wDoge</span>
             <br></br>
             <span>
               Total Bets: {totalBets} <br></br>

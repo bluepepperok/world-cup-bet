@@ -187,7 +187,7 @@ export default function Header() {
                       Number(balanceGlobal) > Number(fixedBetAmountGlobal) ? "balance_ok" : "balance_not_ok"
                     }
                   >
-                    Ɖ {balanceGlobal}
+                    {balanceGlobal} wDoge
                   </span>
                 </span>
               )}
