@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ethers } from "ethers";
 import Welcome from "../components/Welcome/Welcome";
 import { useGlobalState } from "../store/connectionState";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   let countriesRaw = [
@@ -126,6 +128,10 @@ export default function Home() {
 
       //Check if contract is ok
       if (data.contractStatus == "failure") {
+        toast.error("There was a problem, please try again later", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+
         setContractConexionFailure(true);
         return;
       }
@@ -163,7 +169,9 @@ export default function Home() {
     // Check if we already checked for what team we bet.
     // If none is 0, if we don't know yet is -1.
     if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
-      setBetResult("Not enough wDoge balance");
+      toast.error("Not enough wDoge balance", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       return;
     }
 
@@ -179,13 +187,19 @@ export default function Home() {
     //Check if user is connected
     let connected = await isConnected();
     if (!connected) {
-      setBetResult("Please connect your wallet");
+      toast.error("Please connect your wallet", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
       return;
     }
 
     //Check if user has already bet
     if (repeatedAddress) {
-      setShowMessageAlreadyBet(true);
+      toast.error("You can make only one bet per address", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
       return;
     }
 
@@ -213,28 +227,42 @@ export default function Home() {
 
     try {
       let txApprove = await token.approve(wcbAddress, betAmount); //Set a limit amount of tokens that the contract may use.
-      setBetResult("aprove tx confirming... please, wait a few seconds...");
+      toast.success("aprove tx confirming... please, wait a few seconds...", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 25000,
+      });
+
       result = await provider.waitForTransaction(txApprove.hash, 1, 300000);
     } catch (error) {
       console.log("error approving", error);
-      setBetResult("Error approving tokens");
+      toast.error("Oops! There was a problem approving your tokens", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       return;
     }
 
     if (result.status) {
     } else {
-      setBetResult("Oops! There was a problem approving your tokens");
+      toast.error("Oops! There was a problem approving your tokens", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
       return;
     }
-
-    setBetResult("Processing your bet");
+    toast.success("Processing your bet", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 21000,
+    });
     let txBet;
     try {
       debugger;
       txBet = await worldCupBet.bet(numTeam);
     } catch (error) {
       console.log("ERROR: ", error);
-      setBetResult("Error placing your bet");
+      toast.error("Error placing your bet", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
       return;
     }
 
@@ -248,13 +276,20 @@ export default function Home() {
     }
 
     if (receiptBet.status === 1) {
-      setBetResult("Yeah! Your bet was placed");
+      toast.success("Yeah! Your bet was placed", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      setBetResult(true);
+
       setTeamBet(numTeam); //Set the team we bet
       updateBetCounter(numTeam); //Update the bets per team
 
       setBetTxHash(txBet.hash);
     } else {
-      setBetResult("Oops! There was a problem with your bet. Please try again.");
+      toast.error("Oops! There was a problem with your bet. Please try again.", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
       return;
     }
   }
@@ -272,37 +307,30 @@ export default function Home() {
 
   return (
     <Container>
+      <ToastContainer />
+
       {!showMetamaskRequired && <Welcome></Welcome>}
       {betResult && (
         <Row>
-          <Col className="text-center mt-5">
+          <Col className="text-center mt-3">
             <span>{betResult}</span>
             <br></br>
             {txExplorerUrl && (
-              <span ç>
-                tx:
-                <a target="_blank" rel="noreferrer" href={txExplorerUrl + betTxHash}>
-                  {betTxHash}
-                </a>
-              </span>
+              <div>
+                <h2>Yeah! Your bet was placed!</h2>
+                <br></br>
+                <span className="mt-5">
+                  tx:
+                  <a target="_blank" rel="noreferrer" href={txExplorerUrl + betTxHash}>
+                    {betTxHash}
+                  </a>
+                </span>
+              </div>
             )}
           </Col>
         </Row>
       )}
-      {contractConexionFailure && (
-        <Row>
-          <Col className="text-center mt-5">
-            <span>There was a problem, please try again later</span>
-          </Col>
-        </Row>
-      )}
-      {showMessageAlreadyBet && (
-        <Row>
-          <Col className="text-center mt-4">
-            <span>You can make only one bet per address</span>
-          </Col>
-        </Row>
-      )}
+
       {!contractConexionFailure && jackpot != "" && (
         <Row>
           <Col className="text-center mt-4">

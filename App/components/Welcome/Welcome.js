@@ -123,15 +123,15 @@ export default function Welcome(props) {
           )}
         </p>
 
-        <Row>
-          {!connectedGlobal && !showMetamaskRequired && (
+        {!connectedGlobal && !showMetamaskRequired && (
+          <Row>
             <Col>
               <Button onClick={() => handleConnection()} className="mt-4">
                 Connect Wallet to Bet
               </Button>
             </Col>
-          )}
-        </Row>
+          </Row>
+        )}
 
         {showMetamaskRequired && (
           <span>
