@@ -79,6 +79,7 @@ export default function Home() {
   const [teamBet, setTeamBet] = React.useState(-1);
   const [tokenAddressGlobal, setTokenAddressGlobal] = useGlobalState("tokenAddress");
   const [balanceGlobal, setBalanceGlobal] = useGlobalState("balance");
+  const [fixedBetAmountSatoshis, setFixedBetAmountSatoshis] = React.useState(0);
 
   const dogeDivisor = ethers.BigNumber.from(10 ** 8);
 
@@ -130,8 +131,9 @@ export default function Home() {
       }
 
       let fixedBet = ethers.BigNumber.from(data.fixedBetAmount); //Convert to BigNumber
-      fixedBet = fixedBet.div(dogeDivisor); //Convert to Decimal
+      fixedBet = fixedBet.div(dogeDivisor).toString(); //Convert to Decimal
 
+      setFixedBetAmountSatoshis(data.fixedBetAmount);
       setFixedBetAmountGlobal(fixedBet);
 
       setJackpot(data.jackpot);
@@ -160,7 +162,7 @@ export default function Home() {
   async function bet(numTeam) {
     // Check if we already checked for what team we bet.
     // If none is 0, if we don't know yet is -1.
-    if (fixedBetAmountGlobal > balanceGlobal) {
+    if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
       setBetResult("Not enough balance");
       return;
     }
@@ -199,8 +201,7 @@ export default function Home() {
     );
 
     const worldCupBet = new ethers.Contract(wcbAddress, wcbAbi, signer);
-
-    const betAmount = fixedBetAmountGlobal;
+    const betAmount = fixedBetAmountSatoshis;
 
     let result;
 
@@ -223,6 +224,7 @@ export default function Home() {
     setBetResult("Processing your bet");
     let txBet;
     try {
+      debugger;
       txBet = await worldCupBet.bet(numTeam);
     } catch (error) {
       console.log("ERROR: ", error);
