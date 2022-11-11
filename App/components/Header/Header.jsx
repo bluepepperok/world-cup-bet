@@ -17,7 +17,6 @@ export default function Header() {
   const dogeDivisor = ethers.BigNumber.from(10 ** 8);
 
   useEffect(() => {
-    debugger;
     //Check if there is a wallet available
     if (window.ethereum) {
       isConnected();
@@ -216,7 +215,7 @@ export default function Header() {
                 </span>
               )}
               <a
-                class="twitter-share-button"
+                className="twitter-share-button"
                 href="https://twitter.com/intent/tweet?text=Hey%20%40wdogeok%21%20I%20want%20some%20free%20wDoge%20to%20bet%20on%20the%20Dogeathon%20World%20Cup%20Bet%21%20%40BluePepperOk%20%23Doge%20%23wDoge%20%23WorldCupBet"
                 target="_blank"
                 rel="noreferrer"
