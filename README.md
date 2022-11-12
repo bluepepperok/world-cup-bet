@@ -24,7 +24,6 @@ So, if you want to participate in this game, you need to:
 
 If there is more than one winner, the Jackpot will be divided equally among them (those who chose the actual champion). 
   
-  
 Much luck!
 
 ## Tech
