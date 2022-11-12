@@ -1,5 +1,7 @@
 # Dogecoin Hackathon's World Cup Bet
 
+## Overview
+
 Hey! The World Cup is coming and what better moment to make a betting game than the international Dogeathon? So, first of all. 
 
 What is wDoge?
@@ -24,3 +26,9 @@ If there is more than one winner, the Jackpot will be divided equally among them
   
   
 Much luck!
+
+## Tech
+
+Te project has 2 subprojects:\
+[App](/App): The Dapp\
+[Contracts](/Contracts): The Smart Contracts
