@@ -88,14 +88,22 @@ export default function Home() {
   useEffect(() => {
     if (!firstLoad) {
       setFirstLoad(true);
-      getBets();
+      load();
+    }
+
+    async function load() {
+      await getBets();
       console.log("BETS: ", countries);
-      getAbi();
+      await getAbi();
       checkRepeated();
     }
 
     async function checkRepeated() {
-      if (!window.ethereum || !window.ethereum.selectedAddress) return;
+      if (!window.ethereum || !window.ethereum.selectedAddress) {
+        console.log("window.ehtereum: ", window.ethereum);
+        console.log("window.ethereum.selectedAddress: ", window.ethereum.selectedAddress);
+        return;
+      }
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkRepeatedAddress?address=${window.ethereum.selectedAddress}`
       );
@@ -104,7 +112,7 @@ export default function Home() {
       if (data.repeatedAddress) {
         setRepeatedAddress(true);
       }
-
+      console.log("setting data teamBet: ", data);
       setTeamBet(data.team || "");
     }
 
@@ -119,6 +127,7 @@ export default function Home() {
 
     async function getBets() {
       console.log("GETTING BETS FROM ");
+      debugger;
       console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getBets`);
@@ -166,21 +175,26 @@ export default function Home() {
   }
 
   async function bet(numTeam) {
+    debugger;
+    console.log("BETTING");
     // Check if we already checked for what team we bet.
     // If none is 0, if we don't know yet is -1.
     if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
       toast.error("Not enough wDoge balance", {
         position: toast.POSITION.TOP_CENTER,
       });
+      console.log("Not enough wDoge balance");
       return;
     }
 
     if (teamBet < 0) {
+      console.log("No team yet");
       return;
     }
 
     //Check for walllet
     if (!window.ethereum) {
+      console.log("No wallet");
       return;
     }
 
@@ -190,7 +204,7 @@ export default function Home() {
       toast.error("Please connect your wallet", {
         position: toast.POSITION.TOP_CENTER,
       });
-
+      console.log("Not connected");
       return;
     }
 
@@ -199,13 +213,14 @@ export default function Home() {
       toast.error("You can make only one bet per address", {
         position: toast.POSITION.TOP_CENTER,
       });
-
+      console.log("Already bet");
       return;
     }
 
     //Check the network is correct
     const chainId = await ethereum.request({ method: "eth_chainId" });
     if (chainId !== process.env.NEXT_PUBLIC_NETWORK_ID) {
+      console.log("Wrong network");
       return;
     }
 
@@ -317,7 +332,7 @@ export default function Home() {
             <br></br>
             {txExplorerUrl && (
               <div>
-                <h2>Yeah! Your bet was placed!</h2>
+                <h3>Yeah! Your bet was placed!</h3>
                 <br></br>
                 <span className="mt-5">
                   tx:
