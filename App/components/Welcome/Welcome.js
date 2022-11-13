@@ -12,7 +12,7 @@ export default function Welcome(props) {
 
   {/* prettier-ignore */}
 
-  const textWelcome = `Hey! The World Cup is coming and what better moment to make a betting game than the international Dogeaton? So, first of all. 
+  const textWelcome = `Hey! The World Cup is coming and what better moment to make a betting game than the international Dogeathon? So, first of all. 
 
   What is wDoge?
   

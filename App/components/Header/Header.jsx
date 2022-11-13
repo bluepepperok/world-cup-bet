@@ -206,7 +206,7 @@ export default function Header() {
                   variant="outline-primary"
                   onClick={() => addToken()}
                 >
-                  Show Token in Metamask
+                  Show wDoge in Metamask
                 </Button>
               )}
 
