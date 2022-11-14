@@ -306,6 +306,7 @@ export default function Home() {
 
       setTeamBet(numTeam); //Set the team we bet
       updateBetCounter(numTeam); //Update the bets per team
+      setBalanceGlobal(balanceGlobal - fixedBetAmountGlobal); //Update the balance
 
       setBetTxHash(txBet.hash);
     } else {
