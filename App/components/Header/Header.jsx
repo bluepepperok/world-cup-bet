@@ -64,7 +64,7 @@ export default function Header() {
     }
 
     //Check network
-    const chainId = await ethereum.request({ method: "eth_chainId" });
+    const chainId = Number(await ethereum.request({ method: "eth_chainId" }));
     if (chainId !== getChainId(process.env.NEXT_PUBLIC_NETWORK)) {
       setWrongNetwork(true);
 

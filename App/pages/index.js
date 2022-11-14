@@ -231,7 +231,7 @@ export default function Home() {
     }
 
     //Check the network is correct
-    const chainId = await ethereum.request({ method: "eth_chainId" });
+    const chainId = Number(await ethereum.request({ method: "eth_chainId" }));
     if (chainId !== getChainId(process.env.NEXT_PUBLIC_NETWORK)) {
       console.log("Wrong network");
       return;
