@@ -239,16 +239,19 @@ export default function Home() {
     const betAmount = fixedBetAmountSatoshis;
 
     let result;
+    let approvingToast;
 
     try {
       let txApprove = await token.approve(wcbAddress, betAmount); //Set a limit amount of tokens that the contract may use.
-      toast.success("aprove tx confirming... please, wait a few seconds...", {
+      approvingToast = toast.success("Approve tx confirming... please, wait a few seconds...", {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 25000,
+        autoClose: false,
       });
 
       result = await provider.waitForTransaction(txApprove.hash, 1, 300000);
+      toast.dismiss(approvingToast);
     } catch (error) {
+      toast.dismiss(approvingToast);
       console.log("error approving", error);
       toast.error("Oops! There was a problem approving your tokens", {
         position: toast.POSITION.TOP_CENTER,
@@ -264,24 +267,26 @@ export default function Home() {
 
       return;
     }
-    toast.success("Processing your bet", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 21000,
-    });
+
+    let processingToast;
     let txBet;
     try {
-      debugger;
       txBet = await worldCupBet.bet(numTeam);
+      processingToast = toast.success("Processing your bet", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+      });
     } catch (error) {
+      toast.dismiss(processingToast);
       console.log("ERROR: ", error);
       toast.error("Error placing your bet", {
         position: toast.POSITION.TOP_CENTER,
       });
-
       return;
     }
 
     let receiptBet = await txBet.wait(1);
+    toast.dismiss(processingToast);
     console.log("receiptBet:", receiptBet);
 
     if (process.env.NEXT_PUBLIC_NETWORK == "mainnet") {
