@@ -109,11 +109,9 @@ export default function Home() {
       );
       const data = await response.json();
 
-      if (data.repeatedAddress) {
-        setRepeatedAddress(true);
-      }
       console.log("setting data teamBet: ", data);
-      setTeamBet(data.team || "");
+      setRepeatedAddress(data.repeatedAddress);
+      setTeamBet(data.team);
     }
 
     async function getAbi() {
