@@ -10,6 +10,7 @@ export async function loadDeployment(ethers, ethNode) {
     artifactWCB = require("../../Contract/deployment/mainnet/deployment-WorldCupBet.json");
   }
   const provider = new ethers.getDefaultProvider(ethNode);
+  provider.pollingInterval = 11_000;
 
   const wcb = reifyContract(ethers, artifactWCB, provider);
   const { abi: erc20Abi } = require("./ERC20.json");
