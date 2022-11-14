@@ -91,26 +91,34 @@ export default function Home() {
       load();
     }
 
+    const handleAccountsChanged = (accounts) => {
+      console.log("Accounts changed!");
+      checkRepeated(accounts[0]).catch((error) => {
+        console.error(error.stack || error);
+      });
+    };
+
     async function load() {
       await getBets();
       console.log("BETS: ", countries);
       await getAbi();
-      if (!window.ethereum || !window.ethereum.selectedAddress) {
+      if (!window.ethereum) {
         console.log("window.ethereum: ", window.ethereum);
-        console.log("window.ethereum.selectedAddress: ", window.ethereum.selectedAddress);
         return;
       }
-      window.ethereum.on('accountsChanged', (accounts) => {
-        checkRepeated().catch((error) => {
-          console.error(error.stack || error);
-        });
-      });
-      await checkRepeated();
+      window.ethereum.on("accountsChanged", handleAccountsChanged);
+      const selectedAddress = window.ethereum.selectedAddress;
+      console.log("window.ethereum.selectedAddress: ", selectedAddress);
+      await checkRepeated(selectedAddress);
     }
 
-    async function checkRepeated() {
+    async function checkRepeated(account) {
+      if (!account) {
+        return;
+      }
+
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkRepeatedAddress?address=${window.ethereum.selectedAddress}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkRepeatedAddress?address=${account}`
       );
       const data = await response.json();
 
@@ -166,6 +174,8 @@ export default function Home() {
       setCountries(tempArr);
       setTotalBets(totalBets);
     }
+
+    return () => window.removeEventListener("accountsChanged", handleAccountsChanged);
   }, []);
 
   async function isConnected() {
