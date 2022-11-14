@@ -95,15 +95,20 @@ export default function Home() {
       await getBets();
       console.log("BETS: ", countries);
       await getAbi();
-      checkRepeated();
-    }
-
-    async function checkRepeated() {
       if (!window.ethereum || !window.ethereum.selectedAddress) {
-        console.log("window.ehtereum: ", window.ethereum);
+        console.log("window.ethereum: ", window.ethereum);
         console.log("window.ethereum.selectedAddress: ", window.ethereum.selectedAddress);
         return;
       }
+      window.ethereum.on('accountsChanged', (accounts) => {
+        checkRepeated().catch((error) => {
+          console.error(error.stack || error);
+        });
+      });
+      await checkRepeated();
+    }
+
+    async function checkRepeated() {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkRepeatedAddress?address=${window.ethereum.selectedAddress}`
       );
