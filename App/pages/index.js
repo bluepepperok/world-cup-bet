@@ -6,6 +6,7 @@ import Welcome from "../components/Welcome/Welcome";
 import { useGlobalState } from "../store/connectionState";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getChainId } from "../frontend/network";
 
 export default function Home() {
   let countriesRaw = [
@@ -231,7 +232,7 @@ export default function Home() {
 
     //Check the network is correct
     const chainId = await ethereum.request({ method: "eth_chainId" });
-    if (chainId !== process.env.NEXT_PUBLIC_NETWORK_ID) {
+    if (chainId !== getChainId(process.env.NEXT_PUBLIC_NETWORK)) {
       console.log("Wrong network");
       return;
     }

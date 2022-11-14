@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Container, Image, Row, Col } from "react-bootstrap";
 import { ethers } from "ethers";
 import { useGlobalState } from "../../store/connectionState";
+import { getChainId } from "../../frontend/network";
 
 export default function Header() {
   const [accountConnected, setAccountConnected] = React.useState("");
@@ -64,7 +65,7 @@ export default function Header() {
 
     //Check network
     const chainId = await ethereum.request({ method: "eth_chainId" });
-    if (chainId !== process.env.NEXT_PUBLIC_NETWORK_ID) {
+    if (chainId !== getChainId(process.env.NEXT_PUBLIC_NETWORK)) {
       setWrongNetwork(true);
 
       return;
