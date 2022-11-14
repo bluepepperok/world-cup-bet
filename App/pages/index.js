@@ -71,7 +71,6 @@ export default function Home() {
   const [tokenAbi, setTokenAbi] = React.useState();
   const [wcbAbi, setWcbAbi] = React.useState();
   const [wcbAddress, setWcbAddress] = React.useState("");
-  const [repeatedAddress, setRepeatedAddress] = React.useState(false);
   const [showMessageAlreadyBet, setShowMessageAlreadyBet] = React.useState(false);
   const [firstLoad, setFirstLoad] = React.useState(false);
   const [betResult, setBetResult] = React.useState("");
@@ -123,7 +122,6 @@ export default function Home() {
       const data = await response.json();
 
       console.log("setting data teamBet: ", data);
-      setRepeatedAddress(data.repeatedAddress);
       setTeamBet(data.team);
     }
 
@@ -190,8 +188,6 @@ export default function Home() {
   async function bet(numTeam) {
     debugger;
     console.log("BETTING");
-    // Check if we already checked for what team we bet.
-    // If none is 0, if we don't know yet is -1.
     if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
       toast.error("Not enough wDoge balance", {
         position: toast.POSITION.TOP_CENTER,
@@ -200,8 +196,11 @@ export default function Home() {
       return;
     }
 
+    // Check if we already checked for what team we bet.
+    // If the account didn't bet, its value will be 0.
+    // If we don't know didn't bet, its value will be -1.
     if (teamBet < 0) {
-      console.log("No team yet");
+      console.log("Metamask not connected");
       return;
     }
 
@@ -222,7 +221,7 @@ export default function Home() {
     }
 
     //Check if user has already bet
-    if (repeatedAddress) {
+    if (teamBet > 0) {
       toast.error("You can make only one bet per address", {
         position: toast.POSITION.TOP_CENTER,
       });

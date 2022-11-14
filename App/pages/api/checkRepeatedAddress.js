@@ -15,7 +15,6 @@ export default async function checkRepeatedAddress(req, res) {
   const accountBet = await wcb.bets(address);
 
   const response = {
-    repeatedAddress: !accountBet.team.isZero(),
     team: accountBet.team.toNumber(),
   };
 
