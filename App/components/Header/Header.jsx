@@ -185,7 +185,7 @@ export default function Header() {
                   <strong>Balance:</strong>{" "}
                   <span
                     className={
-                      Number(balanceGlobal) > Number(fixedBetAmountGlobal) ? "balance_ok" : "balance_not_ok"
+                      Number(balanceGlobal) >= Number(fixedBetAmountGlobal) ? "balance_ok" : "balance_not_ok"
                     }
                   >
                     {balanceGlobal} wDoge
