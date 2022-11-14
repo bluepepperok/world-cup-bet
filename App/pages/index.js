@@ -368,7 +368,7 @@ export default function Home() {
       {!contractConexionFailure && jackpot != "" && (
         <Row>
           <Col className="text-center mt-4">
-            <span> Jackpot: wDoge{jackpot}</span>
+            <span> Jackpot: {jackpot} wDoge</span>
             <br></br>
             <span>Bet Amount: {fixedBetAmountGlobal} wDoge</span>
             <br></br>
