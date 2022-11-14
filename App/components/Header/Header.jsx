@@ -197,7 +197,6 @@ export default function Header() {
                 <Button
                   className="my-2 mx-3"
                   style={{
-                    background: "rgb(248 248 248)",
                     border: "1px solid #ffb300",
                     color: "#000000",
                     padding: "12px 10px",
@@ -227,13 +226,16 @@ export default function Header() {
                 <Button
                   variant="outline-primary"
                   style={{
+                    padding: "12px 10px",
                     background: "#f7d592",
                     border: "1px solid #FFD700",
                     color: "#000",
+                    fontSize: "14px",
+                    marginRight: "15px",
                   }}
-                  className="my-2 "
+                  className="my-2"
                 >
-                  GET WDOGE
+                  Get some wDoges
                 </Button>
               </a>
             </div>
