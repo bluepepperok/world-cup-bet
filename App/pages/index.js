@@ -186,7 +186,7 @@ export default function Home() {
 
     // Check if we already checked for what team we bet.
     // If the account didn't bet, its value will be 0.
-    // If we don't know didn't bet, its value will be -1.
+    // If we don't know whether it did or didn't bet, its value will be -1.
     if (teamBet < 0) {
       console.log("Metamask not connected");
       return;
@@ -199,7 +199,7 @@ export default function Home() {
     }
 
     //Check if user is connected
-    let connected = await isConnected();
+    const connected = await isConnected();
     if (!connected) {
       toast.error("Please connect your wallet", {
         position: toast.POSITION.TOP_CENTER,
@@ -242,7 +242,7 @@ export default function Home() {
     let approvingToast;
 
     try {
-      let txApprove = await token.approve(wcbAddress, betAmount); //Set a limit amount of tokens that the contract may use.
+      const txApprove = await token.approve(wcbAddress, betAmount); //Set a limit amount of tokens that the contract may use.
       approvingToast = toast.success("Approve tx confirming... please, wait a few seconds...", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,

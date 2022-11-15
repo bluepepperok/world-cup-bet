@@ -47,8 +47,8 @@ export default function Header() {
   }, []);
 
   async function getAbi() {
-    let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/abi`);
-    let data = await res.json();
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/abi`);
+    const data = await res.json();
 
     return {
       tokenAbi: data.tokenAbi,
