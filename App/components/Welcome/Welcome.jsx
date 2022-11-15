@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { useGlobalState } from "../../store/connectionState";
 
-export default function Welcome(props) {
+export default function Welcome() {
   const [showMetamaskRequired, setShowMetamaskRequired] = React.useState(false);
   const [accountConnected, setAccountConnected] = React.useState("");
   const [showText, setShowText] = React.useState(false);
