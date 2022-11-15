@@ -8,62 +8,51 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getChainId } from "../frontend/network";
 
-export default function Home() {
-  let countriesRaw = [
-    { name: "Brazil", flag: "/countryFlags/br-flag.gif", bets: "", id: 1 },
-    { name: "Cameroon", flag: "/countryFlags/cm-flag.gif", bets: "", id: 2 },
-    { name: "Germany", flag: "/countryFlags/gm-flag.webp", bets: "", id: 3 },
-    { name: "France", flag: "/countryFlags/fr-flag.webp", bets: "", id: 4 },
-    { name: "Costa Rica", flag: "/countryFlags/cs-flag.webp", bets: "", id: 5 },
-    { name: "Spain", flag: "/countryFlags/sp-flag.webp", bets: "", id: 6 },
-    { name: "England", flag: "/countryFlags/en-flag.webp", bets: "", id: 7 },
-    { name: "Argentina", flag: "/countryFlags/ar.gif", bets: "", id: 8 },
-    { name: "Belgium", flag: "/countryFlags/be-flag.webp", bets: "", id: 9 },
-    { name: "Canada", flag: "/countryFlags/ca-flag.webp", bets: "", id: 10 },
-    { name: "Uruguay", flag: "/countryFlags/uy-flag.gif", bets: "", id: 11 },
-    { name: "Denmark", flag: "/countryFlags/da-flag.webp", bets: "", id: 12 },
-    {
-      name: "Netherlands",
-      flag: "/countryFlags/nl-flag.webp",
-      bets: "",
-      id: 13,
-    },
-    { name: "Ghana", flag: "/countryFlags/gh-flag.gif", bets: "", id: 14 },
-    { name: "Poland", flag: "/countryFlags/pl-flag.webp", bets: "", id: 15 },
-    { name: "Ecuador", flag: "/countryFlags/ec-flag.webp", bets: "", id: 16 },
-    { name: "Portugal", flag: "/countryFlags/po-flag.gif", bets: "", id: 17 },
-    {
-      name: "Switzerland",
-      flag: "/countryFlags/sz-flag.webp",
-      bets: "",
-      id: 18,
-    },
-    { name: "Wales", flag: "/countryFlags/wa-flag.png", bets: "", id: 19 },
-    { name: "Australia", flag: "/countryFlags/as-flag.webp", bets: "", id: 20 },
-    { name: "Croatia", flag: "/countryFlags/hr-flag.webp", bets: "", id: 21 },
-    { name: "Iran", flag: "/countryFlags/ir-flag.webp", bets: "", id: 22 },
-    { name: "Denmark", flag: "/countryFlags/da-flag.webp", bets: "", id: 23 },
-    { name: "Tunisia", flag: "/countryFlags/ts-flag.webp", bets: "", id: 24 },
-    {
-      name: "Saudi Arabia",
-      flag: "/countryFlags/sa-flag.webp",
-      bets: "",
-      id: 25,
-    },
-    { name: "Senegal", flag: "/countryFlags/sg-flag.gif", bets: "", id: 26 },
-    { name: "Morocco", flag: "/countryFlags/mo-flag.gif", bets: "", id: 27 },
-    { name: "Qatar", flag: "/countryFlags/qa-flag.gif", bets: "", id: 28 },
-    { name: "Serbia", flag: "/countryFlags/ri-flag.gif", bets: "", id: 29 },
-    { name: "Mexico", flag: "/countryFlags/mx-flag.webp", bets: "", id: 30 },
-    {
-      name: "South Korea",
-      flag: "/countryFlags/ks-flag.webp",
-      bets: "",
-      id: 31,
-    },
-    { name: "Japan", flag: "/countryFlags/ja-flag.webp", bets: "", id: 32 },
-  ];
+const countriesRaw = Object.freeze([
+  createCountry("Brazil", "/countryFlags/br-flag.gif", 1),
+  createCountry("Cameroon", "/countryFlags/cm-flag.gif", 2),
+  createCountry("Germany", "/countryFlags/gm-flag.webp", 3),
+  createCountry("France", "/countryFlags/fr-flag.webp", 4),
+  createCountry("Costa Rica", "/countryFlags/cs-flag.webp", 5),
+  createCountry("Spain", "/countryFlags/sp-flag.webp", 6),
+  createCountry("England", "/countryFlags/en-flag.webp", 7),
+  createCountry("Argentina", "/countryFlags/ar.gif", 8),
+  createCountry("Belgium", "/countryFlags/be-flag.webp", 9),
+  createCountry("Canada", "/countryFlags/ca-flag.webp", 10),
+  createCountry("Uruguay", "/countryFlags/uy-flag.gif", 11),
+  createCountry("Denmark", "/countryFlags/da-flag.webp", 12),
+  createCountry("Netherlands", "/countryFlags/nl-flag.webp", 13),
+  createCountry("Ghana", "/countryFlags/gh-flag.gif", 14),
+  createCountry("Poland", "/countryFlags/pl-flag.webp", 15),
+  createCountry("Ecuador", "/countryFlags/ec-flag.webp", 16),
+  createCountry("Portugal", "/countryFlags/po-flag.gif", 17),
+  createCountry("Switzerland", "/countryFlags/sz-flag.webp", 18),
+  createCountry("Wales", "/countryFlags/wa-flag.png", 19),
+  createCountry("Australia", "/countryFlags/as-flag.webp", 20),
+  createCountry("Croatia", "/countryFlags/hr-flag.webp", 21),
+  createCountry("Iran", "/countryFlags/ir-flag.webp", 22),
+  createCountry("Denmark", "/countryFlags/da-flag.webp", 23),
+  createCountry("Tunisia", "/countryFlags/ts-flag.webp", 24),
+  createCountry("Saudi Arabia", "/countryFlags/sa-flag.webp", 25),
+  createCountry("Senegal", "/countryFlags/sg-flag.gif", 26),
+  createCountry("Morocco", "/countryFlags/mo-flag.gif", 27),
+  createCountry("Qatar", "/countryFlags/qa-flag.gif", 28),
+  createCountry("Serbia", "/countryFlags/ri-flag.gif", 29),
+  createCountry("Mexico", "/countryFlags/mx-flag.webp", 30),
+  createCountry("South Korea", "/countryFlags/ks-flag.webp", 31),
+  createCountry("Japan", "/countryFlags/ja-flag.webp", 32),
+]);
 
+function createCountry(name, flag, id) {
+  return {
+    name,
+    flag,
+    id,
+    bets: 0,
+  };
+}
+
+export default function Home() {
   const [countries, setCountries] = useState(() => countriesRaw);
   const [showMetamaskRequired, setShowMetamaskRequired] = React.useState(false);
   const [contractConexionFailure, setContractConexionFailure] = React.useState(false);
@@ -161,7 +150,7 @@ export default function Home() {
       setFixedBetAmountGlobal(fixedBet);
 
       setJackpot(Number(data.jackpot));
-      let tempArr = [...countriesRaw];
+      const tempArr = [...countriesRaw];
       let totalBets = 0;
       for (let i = 0; i < countries.length; i++) {
         tempArr[i].bets = data.betsPerTeam[i];
@@ -327,14 +316,15 @@ export default function Home() {
   }
 
   function updateBetCounter(numTeam) {
-    let tempArrCountries = [...countries];
-    for (let i = 1; i < tempArrCountries.length; i++) {
-      if (tempArrCountries[i].id == numTeam) {
-        tempArrCountries[i].bets++;
+    const tempArrCountries = [...countries];
+    for (const country of tempArrCountries) {
+      if (country.id == numTeam) {
+        country.bets++;
+        break;
       }
     }
     tempArrCountries.sort((a, b) => b.bets - a.bets);
-    setCountries([...tempArrCountries]);
+    setCountries(tempArrCountries);
     setJackpot(jackpot + Number(fixedBetAmountGlobal));
     setTotalBets(totalBets + 1);
   }
