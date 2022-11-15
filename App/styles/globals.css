@@ -45,3 +45,39 @@ a {
   color: #049606;
   font-weight: 600;
 }
+
+@media (max-width: 300px) {
+  .buttons-header {
+    justify-content: center;
+    margin: auto !important;
+    padding-top: 20px;
+  }
+
+  .text-welcome {
+    padding-top: 180px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 570px) {
+  .buttons-header {
+    justify-content: center;
+    margin: auto !important;
+    padding-top: 20px;
+  }
+
+  .text-welcome {
+    padding-top: 120px;
+  }
+}
+
+@media (min-width: 571px) and (max-width: 650px) {
+  .buttons-header {
+    justify-content: center;
+    margin: auto !important;
+    padding-top: 20px;
+  }
+
+  .text-welcome {
+    padding-top: 50px;
+  }
+}

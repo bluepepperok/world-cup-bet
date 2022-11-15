@@ -173,7 +173,7 @@ export default function Header() {
                 </a>
               </Col>
             </Row>
-            <div>
+            <Row className="buttons-header">
               {connectedGlobal && !wrongNetwork && (
                 <span style={{ fontSize: "14px" }}>
                   <strong>Connected to: </strong> {accountConnected.substring(0, 4)}...
@@ -239,7 +239,7 @@ export default function Header() {
                   Get some wDoges
                 </Button>
               </a>
-            </div>
+            </Row>
           </div>
         </Col>
       </Row>

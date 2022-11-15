@@ -87,11 +87,11 @@ export default function Welcome(props) {
   }
 
   return (
-    <Row className="mt-5 align-items-center text-center justify-content-center">
+    <Row className="mt-5 align-items-center text-center justify-content-center text-welcome">
       <Col lg={12} className="text-center ">
         <h1 className="h2">Welcome to the World Cup Bet</h1>
       </Col>
-      <Col lg={6} className="text-center ">
+      <Col lg={6} className="text-center">
         <p style={{ whiteSpace: "pre-wrap", textAlign: "left", marginTop: "30px", color: "#676767" }}>
           {showText ? textWelcome : textWelcome.substring(0, 126) + "..."}
           {!showText && (
@@ -116,7 +116,7 @@ export default function Welcome(props) {
         </p>
 
         {!connectedGlobal && !showMetamaskRequired && (
-          <Row>
+          <Row className="d-none d-lg-block">
             <Col>
               <Button onClick={() => handleConnection()} className="mt-4">
                 Connect Wallet to Bet
@@ -124,6 +124,11 @@ export default function Welcome(props) {
             </Col>
           </Row>
         )}
+        <Row className="d-block d-lg-none">
+          <Col>
+            <span style={{ color: "red" }}>Bets are only available on desktop version.</span>
+          </Col>
+        </Row>
 
         {showMetamaskRequired && (
           <span>

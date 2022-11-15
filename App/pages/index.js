@@ -137,7 +137,6 @@ export default function Home() {
 
     async function getBets() {
       console.log("GETTING BETS FROM ");
-      debugger;
       console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getBets`);
@@ -187,7 +186,6 @@ export default function Home() {
   }
 
   async function bet(numTeam) {
-    debugger;
     console.log("BETTING");
     if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
       toast.error("Not enough wDoge balance", {
