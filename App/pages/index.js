@@ -161,7 +161,7 @@ export default function Home() {
       setFixedBetAmountSatoshis(data.fixedBetAmount);
       setFixedBetAmountGlobal(fixedBet);
 
-      setJackpot(data.jackpot);
+      setJackpot(Number(data.jackpot));
       let tempArr = [...countriesRaw];
       let totalBets = 0;
       for (let i = 0; i < countries.length; i++) {
@@ -337,6 +337,8 @@ export default function Home() {
     }
     tempArrCountries.sort((a, b) => b.bets - a.bets);
     setCountries([...tempArrCountries]);
+    setJackpot(jackpot + Number(fixedBetAmountGlobal));
+    setTotalBets(totalBets + 1);
   }
 
   return (
