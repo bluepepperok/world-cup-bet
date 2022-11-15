@@ -1,9 +1,12 @@
+import ReactGA4 from "react-ga4";
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Container, Image, Row, Col } from "react-bootstrap";
 import { ethers } from "ethers";
 import { useGlobalState } from "../../store/connectionState";
 import { getChainId } from "../../frontend/network";
+
+ReactGA4.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GA4_ID);
 
 export default function Header() {
   const [accountConnected, setAccountConnected] = React.useState("");
@@ -18,6 +21,9 @@ export default function Header() {
   const dogeDivisor = ethers.BigNumber.from(10 ** 8);
 
   useEffect(() => {
+    //Google Analytics
+    ReactGA4.send({ hitType: "pageview", page: window.location.pathname });
+
     //Check if there is a wallet available
     if (window.ethereum) {
       isConnected();
@@ -173,7 +179,7 @@ export default function Header() {
                 </a>
               </Col>
             </Row>
-            <Row className="buttons-header">
+            <div className="buttons-header">
               {connectedGlobal && !wrongNetwork && (
                 <span style={{ fontSize: "14px" }}>
                   <strong>Connected to: </strong> {accountConnected.substring(0, 4)}...
@@ -239,7 +245,7 @@ export default function Header() {
                   Get some wDoges
                 </Button>
               </a>
-            </Row>
+            </div>
           </div>
         </Col>
       </Row>
