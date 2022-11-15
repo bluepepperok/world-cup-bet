@@ -180,7 +180,7 @@ export default function Home() {
       toast.error("Not enough wDoge balance", {
         position: toast.POSITION.TOP_CENTER,
       });
-      console.log("Not enough wDoge balance");
+      console.error("Not enough wDoge balance");
       return;
     }
 
@@ -188,13 +188,13 @@ export default function Home() {
     // If the account didn't bet, its value will be 0.
     // If we don't know whether it did or didn't bet, its value will be -1.
     if (teamBet < 0) {
-      console.log("Metamask not connected");
+      console.error("Metamask not connected");
       return;
     }
 
     //Check for walllet
     if (!window.ethereum) {
-      console.log("No wallet");
+      console.error("No wallet");
       return;
     }
 
@@ -204,7 +204,7 @@ export default function Home() {
       toast.error("Please connect your wallet", {
         position: toast.POSITION.TOP_CENTER,
       });
-      console.log("Not connected");
+      console.error("Not connected");
       return;
     }
 
@@ -213,14 +213,14 @@ export default function Home() {
       toast.error("You can make only one bet per address", {
         position: toast.POSITION.TOP_CENTER,
       });
-      console.log("Already bet");
+      console.error("Already bet");
       return;
     }
 
     //Check the network is correct
     const chainId = Number(await ethereum.request({ method: "eth_chainId" }));
     if (chainId !== getChainId(process.env.NEXT_PUBLIC_NETWORK)) {
-      console.log("Wrong network");
+      console.error("Wrong network");
       return;
     }
 
@@ -252,15 +252,16 @@ export default function Home() {
       toast.dismiss(approvingToast);
     } catch (error) {
       toast.dismiss(approvingToast);
-      console.log("error approving", error);
+      console.error("error approving", error);
       toast.error("Oops! There was a problem approving your tokens", {
         position: toast.POSITION.TOP_CENTER,
       });
       return;
     }
 
-    if (result.status) {
+    if (result.status === 1) {
     } else {
+      console.error("Failed approve tx ", result.transactionHash);
       toast.error("Oops! There was a problem approving your tokens", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -278,7 +279,7 @@ export default function Home() {
       });
     } catch (error) {
       toast.dismiss(processingToast);
-      console.log("ERROR: ", error);
+      console.error("ERROR: ", error);
       toast.error("Error placing your bet", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -307,11 +308,10 @@ export default function Home() {
 
       setBetTxHash(txBet.hash);
     } else {
+      console.error("Failed bet tx ", result.transactionHash);
       toast.error("Oops! There was a problem with your bet. Please try again.", {
         position: toast.POSITION.TOP_CENTER,
       });
-
-      return;
     }
   }
 
