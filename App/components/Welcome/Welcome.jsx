@@ -79,10 +79,10 @@ export default function Welcome() {
 
               If you want to participate in this game 😎, you need to:<br></br><br></br>
 
-              1) Have 50 wDoges in your wallet 🐶. If you don't, let us know by clicking the "Get some wDoges" button and we'll give you some for free.<br></br><br></br>
-              2) Once you have wDoges, connect your Metamask wallet by clicking on the button "Connect wallet to bet". Select the account where you have the wDoges.<br></br><br></br>
-              3) If you don't see your wDoges in Metamask, Click on "Show wDoge on Metamask". <br></br><br></br>
-              4) Click on your favorite national team's flag to bet for it. 🤞<br></br><br></br>
+              1) Have 50 wDoges in your wallet 🐶. If you don&apos;t, let us know by clicking the &apos;Get some wDoges&apos; button and we&aposll give you some for free.<br></br><br></br>
+              2) Once you have wDoges, connect your Metamask wallet by clicking on the button &apos;Connect wallet to bet&apos;. Select the account where you have the wDoges.<br></br><br></br>
+              3) If you don&apos;t see your wDoges in Metamask, Click on &apos;Show wDoge on Metamask&apos;. <br></br><br></br>
+              4) Click on your favorite national team&apos;s flag to bet for it. 🤞<br></br><br></br>
               5) A transaction will pop up in Metamask. Approve the amount of money to bet. The amount is fixed to 50 wDoges per address.<br></br><br></br>
               6) A second transaction will pop up in metamask. Please Approve that one too. ✅<br></br><br></br>
               7) Wait until the World Cup 2022 is over and collect the prize if you bet for the winner. 😱 <br></br><br></br>
@@ -92,7 +92,7 @@ export default function Welcome() {
               <strong>Much luck!</strong><br></br><br></br>
 
               IMPORTANT: This is just a demo game in the context of the Dogecoin Hackathon in Australia.
-              It's not intended to be a gambling site and no company will make a profit out of it.
+              It&apos;s not intended to be a gambling site and no company will make a profit out of it.
               All wDoges for this game will be given to hackathon participants for free.
                         
             </p>
