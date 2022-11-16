@@ -1,5 +1,9 @@
 let contracts;
 
+/**
+ * @param {import("ethers")} ethers
+ * @param {string} ethNode Ethereum node URL.
+ */
 export async function loadDeployment(ethers, ethNode) {
   if (contracts !== undefined) return contracts;
 
@@ -9,7 +13,7 @@ export async function loadDeployment(ethers, ethNode) {
   } else if (process.env.NEXT_PUBLIC_NETWORK == "mainnet") {
     artifactWCB = require("../../Contract/deployment/mainnet/deployment-WorldCupBet.json");
   }
-  const provider = new ethers.getDefaultProvider(ethNode);
+  const provider = new ethers.providers.StaticJsonRpcProvider({ url: ethNode });
   provider.pollingInterval = 11_000;
 
   const wcb = reifyContract(ethers, artifactWCB, provider);
