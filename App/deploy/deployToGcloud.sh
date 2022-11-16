@@ -12,7 +12,7 @@ then
 elif [ $1 = 'mainnet' ]
 then
     wcbConfig="deploy/contentProdMainnet"
-    wcbProject="worldcup-goerli"
+    wcbProject="worldcup-367919"
 else 
 echo "Invalid network"
 exit 1
