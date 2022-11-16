@@ -17,12 +17,16 @@ export default function Header() {
   const [balanceGlobal, setBalanceGlobal] = useGlobalState("balance");
   const [wrongNetwork, setWrongNetwork] = React.useState(false);
   const [fixedBetAmountGlobal, setFixedBetAmountGlobal] = useGlobalState("fixedBetAmount");
+  const [loadedOnce, setLoadedOnce] = React.useState(false);
 
   const dogeDivisor = ethers.BigNumber.from(10 ** 8);
 
   useEffect(() => {
     //Google Analytics
-    ReactGA4.send({ hitType: "pageview", page: window.location.pathname });
+    if (process.env.NEXT_PUBLIC_NETWORK == "mainnet") {
+      setLoadedOnce(true);
+      ReactGA4.send({ hitType: "pageview", page: window.location.pathname });
+    }
 
     //Check if there is a wallet available
     if (window.ethereum) {
