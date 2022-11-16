@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Button, Container, Card } from "react-bootstrap";
+import { Spinner, Col, Row, Button, Container, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ethers } from "ethers";
 import Welcome from "../components/Welcome/Welcome";
@@ -334,6 +334,13 @@ export default function Home() {
       <ToastContainer />
 
       {!showMetamaskRequired && <Welcome></Welcome>}
+      {!fixedBetAmountGlobal && (
+        <Row className="mt-4 text-center">
+          <Col className=" text-center">
+            <Spinner variant="success" animation="border" role="status"></Spinner>
+          </Col>
+        </Row>
+      )}
       {betResult && (
         <Row>
           <Col className="text-center mt-3">
