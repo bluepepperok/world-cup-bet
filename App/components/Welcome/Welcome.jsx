@@ -9,9 +9,11 @@ export default function Welcome() {
   const [accountConnected, setAccountConnected] = React.useState("");
   const [showText, setShowText] = React.useState(false);
   const [connectedGlobal, setConnectedGlobal] = useGlobalState("connected");
+  const [useGoogleChromeMessage, setUseGoogleChromeMessage] = React.useState(false);
 
   useEffect(() => {
     checkWalletInstalled();
+    setUseGoogleChromeMessage(!isGoogleChrome());
 
     if (window.ethereum) {
       isConnected();
@@ -21,6 +23,29 @@ export default function Welcome() {
       });
     }
   }, []);
+
+  function isGoogleChrome() {
+    let isChromium = window.chrome;
+    let winNav = window.navigator;
+    let vendorName = winNav.vendor;
+    let isOpera = typeof window.opr !== "undefined";
+    let isIEedge = winNav.userAgent.indexOf("Edg") > -1;
+    let isIOSChrome = winNav.userAgent.match("CriOS");
+
+    if (isIOSChrome) {
+      return true;
+    } else if (
+      isChromium !== null &&
+      typeof isChromium !== "undefined" &&
+      vendorName === "Google Inc." &&
+      isOpera === false &&
+      isIEedge === false
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   function checkWalletInstalled() {
     if (typeof window.ethereum === "undefined") {
@@ -119,6 +144,14 @@ export default function Welcome() {
           )}
         </p>
 
+        {useGoogleChromeMessage && 
+        (<Row className="">
+          <Col>
+            <span style={{ color: "red" }}>Bets are only available on Google Chrome.</span>
+          </Col>
+        </Row>
+        )}
+
         {!connectedGlobal && !showMetamaskRequired && (
           <Row className="d-none d-lg-block">
             <Col>
@@ -128,6 +161,7 @@ export default function Welcome() {
             </Col>
           </Row>
         )}
+
         <Row className="d-block d-lg-none">
           <Col>
             <span style={{ color: "red" }}>Bets are only available on desktop version.</span>
