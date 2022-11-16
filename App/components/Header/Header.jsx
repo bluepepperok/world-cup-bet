@@ -144,7 +144,7 @@ export default function Header() {
         method: "wallet_watchAsset",
         params: {
           type: "ERC20",
-          options: tokenOptions
+          options: tokenOptions,
         },
       });
     } catch (error) {
@@ -165,6 +165,7 @@ export default function Header() {
               <Col>
                 <a href="https://dogecoin.com/dogeathon/" target="_blank" rel="noreferrer">
                   <Image
+                    alt="Dogeathon"
                     className="mt-3 mx-3"
                     style={{ maxWidth: "130px" }}
                     src="/logos/hackaton-logo.png"
@@ -174,12 +175,22 @@ export default function Header() {
 
               <Col>
                 <a href="https://wdoge.tech/" target="_blank" rel="noreferrer">
-                  <Image className="mt-2" style={{ maxWidth: "130px" }} src="/logos/wdoge-logo.png"></Image>
+                  <Image
+                    alt="wDoge"
+                    className="mt-2"
+                    style={{ maxWidth: "130px" }}
+                    src="/logos/wdoge-logo.png"
+                  ></Image>
                 </a>
               </Col>
               <Col>
                 <a href="https://bluepepper.io/" target="_blank" rel="noreferrer">
-                  <Image className="mt-2" style={{ maxWidth: "130px" }} src="/logos/blue-pepper.png"></Image>
+                  <Image
+                    alt="Bluepepper"
+                    className="mt-2"
+                    style={{ maxWidth: "130px" }}
+                    src="/logos/blue-pepper.png"
+                  ></Image>
                 </a>
               </Col>
             </Row>

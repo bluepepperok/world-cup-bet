@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ethers } from "ethers";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col, Image } from "react-bootstrap";
 import { useGlobalState } from "../../store/connectionState";
 
 export default function Welcome() {
@@ -88,7 +88,7 @@ export default function Welcome() {
   return (
     <Row className="mt-5 align-items-center text-center justify-content-center text-welcome">
       <Col lg={12} className="text-center ">
-        <img src="shiba-soccer.png" style={{maxWidth:"150px"}} alt="" />
+        <Image src="shiba-soccer.png" style={{maxWidth:"150px"}} alt="" ></Image>
         <h1 className="h2">Welcome to the Wow Cup Bet! 👀</h1>
       </Col>
       <Col lg={6} className="text-center">
