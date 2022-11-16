@@ -3,7 +3,7 @@
 ## Overview
 
 The World Cup bet is a demo game developed as part of the Dogecoin Hackathon 2022 in Australia.
-The goal is to show the posibilities that wDoge (link a wdoge.tech) brings to the Dogecoin ecosystem through 
+The goal is to show the posibilities that [wDoge](https://wdoge.tech) brings to the Dogecoin ecosystem through 
 the use of smart contracts and dapps. 
   
 If you want to participate in this game, you need to:
