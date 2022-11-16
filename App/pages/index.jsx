@@ -387,7 +387,7 @@ export default function Home() {
                 style={{ maxWidth: "150px", margin: "auto" }}
               >
                 <Card.Img
-                  className="image_hover"
+                  className="flag image_hover"
                   style={{
                     height: "110px",
                     overflow: "hidden",

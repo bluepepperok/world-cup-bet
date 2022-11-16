@@ -63,7 +63,8 @@ export default function Welcome() {
   return (
     <Row className="mt-5 align-items-center text-center justify-content-center text-welcome">
       <Col lg={12} className="text-center ">
-        <h1 className="h2">Welcome to the World Cup Bet</h1>
+        <img src="shiba-soccer.png" style={{maxWidth:"150px"}} alt="" />
+        <h1 className="h2">Welcome to the Wow Cup Bet! 👀</h1>
       </Col>
       <Col lg={6} className="text-center">
         <p style={{ whiteSpace: "pre-wrap", textAlign: "left", marginTop: "30px", color: "#676767" }}>
@@ -71,22 +72,22 @@ export default function Welcome() {
             <p style={{padding:"20px", border:"1px solid #ccc", borderRadius:"15px"}}>
               {" "}
 
-              The World Cup bet is a demo game developed as part of the Dogecoin Hackathon 2022 in Australia.<br></br>
+              The World Cup bet is a demo game developed as part of the Dogecoin Hackathon 2022 in Australia 🔥<br></br>
               <br></br>              
               The goal is to show the posibilities that <a target="_blank" rel="noreferrer" href="https://wdoge.tech/">wDoge</a>  brings to the Dogecoin ecosystem through
-              the use of smart contracts and dapps.<br></br><br></br>
+              the use of smart contracts and dapps. 👀<br></br><br></br>
 
-              If you want to participate in this game, you need to:<br></br><br></br>
+              If you want to participate in this game 😎, you need to:<br></br><br></br>
 
-              1) Have 50 wDoges in your wallet. If you don't, let us know by clicking the "Get some wDoges" button and we'll give you some for free.<br></br><br></br>
+              1) Have 50 wDoges in your wallet 🐶. If you don't, let us know by clicking the "Get some wDoges" button and we'll give you some for free.<br></br><br></br>
               2) Once you have wDoges, connect your Metamask wallet by clicking on the button "Connect wallet to bet". Select the account where you have the wDoges.<br></br><br></br>
               3) If you don't see your wDoges in Metamask, Click on "Show wDoge on Metamask". <br></br><br></br>
-              4) Click on your favorite national team's flag to bet for it.<br></br><br></br>
+              4) Click on your favorite national team's flag to bet for it. 🤞<br></br><br></br>
               5) A transaction will pop up in Metamask. Approve the amount of money to bet. The amount is fixed to 50 wDoges per address.<br></br><br></br>
-              6) A second transaction will pop up in metamask. Please Approve that one too.<br></br><br></br>
-              7) Wait until the World Cup 2022 is over and collect the prize if you bet for the winner.<br></br><br></br>
+              6) A second transaction will pop up in metamask. Please Approve that one too. ✅<br></br><br></br>
+              7) Wait until the World Cup 2022 is over and collect the prize if you bet for the winner. 😱 <br></br><br></br>
               
-              The whole Jackpot will be divided equally among the winners.<br></br><br></br>
+              The whole Jackpot will be divided equally among the winners. 🎉<br></br><br></br>
 
               <strong>Much luck!</strong><br></br><br></br>
 
@@ -96,7 +97,7 @@ export default function Welcome() {
                         
             </p>
           )}
-          {!showText && " The World Cup bet is a demo game developed as part of the Dogecoin Hackathon 2022 in Australia....  "}
+          {!showText && " The World Cup bet is a demo game developed as part of the Dogecoin Hackathon 2022 in Australia 🔥  "}
           {!showText && (
             <a
               style={{ color: "#373737", textDecoration: "none" }}

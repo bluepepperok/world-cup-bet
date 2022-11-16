@@ -81,3 +81,10 @@ a {
     padding-top: 50px;
   }
 }
+
+.flag {
+  transition: transform 0.2s; /* Animation */
+}
+.flag:hover {
+  transform: scale(1.1);
+}
