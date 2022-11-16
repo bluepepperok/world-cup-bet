@@ -51,7 +51,6 @@ export default function Header() {
       async function getBalance() {
         const { tokenAbi, tokenAddress } = await getAbi();
         await checkBalance(tokenAbi, tokenAddress, true);
-        console.log("balance", balanceGlobal);
       }
     }
   }, []);
@@ -94,11 +93,6 @@ export default function Header() {
 
     const signerAddress = await signer.getAddress();
 
-    console.log("connetore", {
-      tokenAddress,
-      tokenAbi, //Token abi
-      signer,
-    });
     const token = new ethers.Contract(
       tokenAddress,
       tokenAbi, //Token abi
@@ -122,7 +116,6 @@ export default function Header() {
       return true;
     } else {
       setConnectedGlobal(false);
-      console.log("Metamask is not connected");
       return false;
     }
   }

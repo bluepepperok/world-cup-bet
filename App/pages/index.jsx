@@ -89,15 +89,12 @@ export default function Home() {
 
     async function load() {
       await getBets();
-      console.log("BETS: ", countries);
       await getAbi();
       if (!window.ethereum) {
-        console.log("window.ethereum: ", window.ethereum);
         return;
       }
       window.ethereum.on("accountsChanged", handleAccountsChanged);
       const selectedAddress = window.ethereum.selectedAddress;
-      console.log("window.ethereum.selectedAddress: ", selectedAddress);
       await checkRepeated(selectedAddress);
     }
 
@@ -111,7 +108,6 @@ export default function Home() {
       );
       const data = await response.json();
 
-      console.log("setting data teamBet: ", data);
       setTeamBet(data.team);
     }
 
@@ -125,13 +121,8 @@ export default function Home() {
     }
 
     async function getBets() {
-      console.log("GETTING BETS FROM ");
-      console.log(process.env.NEXT_PUBLIC_BASE_URL);
-
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getBets`);
       const data = await res.json();
-
-      console.log("DATA: ", data);
 
       //Check if contract is ok
       if (data.contractStatus == "failure") {
@@ -156,7 +147,6 @@ export default function Home() {
         tempArr[i].bets = data.betsPerTeam[i];
         totalBets += Number(data.betsPerTeam[i]);
       }
-      console.log("COUNTRIES ", tempArr);
       tempArr.sort((a, b) => b.bets - a.bets);
       setCountries(tempArr);
       setTotalBets(totalBets);
@@ -175,7 +165,6 @@ export default function Home() {
   }
 
   async function bet(numTeam) {
-    console.log("BETTING");
     if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
       toast.error("Not enough wDoge balance", {
         position: toast.POSITION.TOP_CENTER,
@@ -288,7 +277,6 @@ export default function Home() {
 
     let receiptBet = await txBet.wait(1);
     toast.dismiss(processingToast);
-    console.log("receiptBet:", receiptBet);
 
     if (process.env.NEXT_PUBLIC_NETWORK == "mainnet") {
       setTxExplorerUrl("https://etherscan.io/tx/");

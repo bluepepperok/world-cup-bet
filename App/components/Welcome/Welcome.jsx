@@ -65,7 +65,6 @@ export default function Welcome() {
       return true;
     } else {
       setConnectedGlobal(false);
-      console.log("Metamask is not connected");
       return false;
     }
   }
