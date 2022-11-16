@@ -20,6 +20,8 @@ App/.next
 App/.env.local
 App/.env.development
 App/.env.production
+App/deploy/contentProdGoerli
+App/deploy/contentProdMainnet
 
 #gcloud config
 App/.gcloudignore
