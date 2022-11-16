@@ -2,29 +2,27 @@
 
 ## Overview
 
-Hey! The World Cup is coming and what better moment to make a betting game than the international Dogeathon? So, first of all. 
-
-What is wDoge?
+The World Cup bet is a demo game developed as part of the Dogecoin Hackathon 2022 in Australia.
+The goal is to show the posibilities that wDoge (link a wdoge.tech) brings to the Dogecoin ecosystem through 
+the use of smart contracts and dapps. 
   
-wDoge is token on the ethereum Network. To be more precise, it is a wrapped token. It means that each token represents the same amount of another coin, in this case, Dogecoin.  
+If you want to participate in this game, you need to:
 
-But... Why do we need to wrap Dogecoin? 
-
-Well, the answer is simple. Ethereum allows the creation of smart contracts. Programs on the blockchain that allow the creation of open programs that can&apos;t be modified by anyone.
-Just like this game, once it is created, the rules are clear and can&apos;t be modified.
+1) Have 50 wDoges in your wallet. If you don't, let us know by clicking the "Get some wDoges" button and we'll give you some for free.
+2) Once you have wDoges, connect your Metamask wallet by clicking on the button "Connect wallet to bet". Select the account where you have the wDoges.
+3) If you don't see your wDoges in Metamask, Click on "Show wDoge on Metamask"
+4) Click on your favorite national team's flag to bet for it. 
+5) A transaction will pop up in Metamask. Approve the amount of money to bet. The amount is fixed to 50 wDoges per address.
+6) A second transaction will pop up in metamask. Please Approve that one too.
+7) Wait until the World Cup 2022 is over and collect the prize if you bet for the winner.
   
-  
-So, if you want to participate in this game, you need to:
-  
-1) Connect your Metamask wallet click on the button.
-2) Choose your favorite team. 
-3) Approve the amount of money to bet. The amount is already fixed on 50 wDoges per address. And remember 1 wDoge = 1 Doge!
-4) Wait until the World Cup is over and We know who is the Champion.
-5) Collect your prize if you won.
-
-If there is more than one winner, the Jackpot will be divided equally among them (those who chose the actual champion). 
+The whole Jackpot will be divided equally among the winners. 
   
 Much luck!
+
+IMPORTANT: This is just a demo game in the context of the Dogecoin Hackathon in Australia. 
+It's not intended to be a gambling site and no company will make a profit out of it.
+All wDoges for this game will be given to hackathon participants for free.
 
 ## Tech
 
