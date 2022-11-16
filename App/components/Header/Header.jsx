@@ -129,22 +129,22 @@ export default function Header() {
 
   async function addToken() {
     // Here we prompt the user to add the WDOGE token
-    const tokenSymbol = "WDOGE";
-    const tokenDecimals = 8;
-    // TODO: set image for the WDOGE token
-    // const tokenImage = "";
+
+    const tokenOptions = {
+      address: tokenAddressGlobal,
+      symbol: "WDOGE",
+      decimals: 8,
+    };
+    if (process.env.NEXT_PUBLIC_NETWORK === "mainnet") {
+      tokenOptions.image = "https://wdoge.tech/wdoge-symbol.svg";
+    }
 
     try {
       await ethereum.request({
         method: "wallet_watchAsset",
         params: {
           type: "ERC20",
-          options: {
-            address: tokenAddressGlobal,
-            symbol: tokenSymbol,
-            decimals: tokenDecimals,
-            // image: tokenImage,
-          },
+          options: tokenOptions
         },
       });
     } catch (error) {
