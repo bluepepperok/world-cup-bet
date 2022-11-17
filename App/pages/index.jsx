@@ -164,6 +164,25 @@ export default function Home() {
     }
   }
 
+  function customToastWithSpinner(text) {
+    const MsgApprove = ({ closeToast, toastProps }) => (
+      <div className="text-center">
+        {text}
+        <br></br>
+        <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
+      </div>
+    );
+
+    let toastObject = toast(MsgApprove, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: false,
+      closeOnClick: false,
+      draggable: false,
+    });
+
+    return toastObject;
+  }
+
   async function bet(numTeam) {
     if (Number(fixedBetAmountGlobal) > Number(balanceGlobal)) {
       toast.error("Not enough wDoge balance", {
@@ -233,19 +252,9 @@ export default function Home() {
     try {
       const txApprove = await token.approve(wcbAddress, betAmount); //Set a limit amount of tokens that the contract may use.
 
-      const MsgApprove = ({ closeToast, toastProps }) => (
-        <div className="text-center">
-          Approve TX confirming. Please, wait a few seconds. (step 1 of 2)<br></br>
-          <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
-        </div>
-      );
+      let message = "Approve TX confirming. Please, wait a few seconds. (step 1 of 2)";
 
-      approvingToast = toast(MsgApprove, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: false,
-        closeOnClick: false,
-        draggable: false,
-      });
+      approvingToast = customToastWithSpinner(message);
 
       result = await provider.waitForTransaction(txApprove.hash, 1, 300000);
       toast.dismiss(approvingToast);
@@ -273,19 +282,14 @@ export default function Home() {
     try {
       txBet = await worldCupBet.bet(numTeam);
 
-      const MsgBet = ({ closeToast, toastProps }) => (
-        <div className="text-center">
-          Processing your bet. <br></br>(step 2 of 2) <br></br>
-          <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
-        </div>
+      let message = (
+        <span>
+          {" "}
+          Processing your bet. <br></br> (step 2 of 2){" "}
+        </span>
       );
 
-      processingToast = toast(MsgBet, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: false,
-        closeOnClick: false,
-        draggable: false,
-      });
+      processingToast = customToastWithSpinner(message);
     } catch (error) {
       toast.dismiss(processingToast);
       console.error("ERROR: ", error);
