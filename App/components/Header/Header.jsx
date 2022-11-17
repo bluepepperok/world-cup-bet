@@ -150,7 +150,7 @@ export default function Header() {
       <Row xs="12" md="3" className="text-center">
         <Col>
           <div
-            style={{ justifyContent: "space-between", background: "#fff" }}
+            style={{ position: "absolute", justifyContent: "space-between", background: "#fff" }}
             className=" navbar navbar-expand-lg 
     navbar-light fixed-top py-lg-0 "
           >
