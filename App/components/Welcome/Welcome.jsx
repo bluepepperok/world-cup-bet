@@ -13,7 +13,7 @@ export default function Welcome() {
 
   useEffect(() => {
     checkWalletInstalled();
-    setUseGoogleChromeMessage(!isGoogleChrome());
+    setUseGoogleChromeMessage(!isGoogleChromeOrFirefox());
 
     if (window.ethereum) {
       isConnected();
@@ -24,20 +24,20 @@ export default function Welcome() {
     }
   }, []);
 
-  function isGoogleChrome() {
+  function isGoogleChromeOrFirefox() {
+    debugger;
     let isChromium = window.chrome;
     let winNav = window.navigator;
-    let vendorName = winNav.vendor;
     let isOpera = typeof window.opr !== "undefined";
     let isIEedge = winNav.userAgent.indexOf("Edg") > -1;
     let isIOSChrome = winNav.userAgent.match("CriOS");
+    let isFirefox = winNav.userAgent.toLowerCase().indexOf("firefox") > -1;
 
-    if (isIOSChrome) {
+    if (isIOSChrome || isFirefox) {
       return true;
     } else if (
       isChromium !== null &&
       typeof isChromium !== "undefined" &&
-      vendorName === "Google Inc." &&
       isOpera === false &&
       isIEedge === false
     ) {
@@ -146,7 +146,7 @@ export default function Welcome() {
         {useGoogleChromeMessage && 
         (<Row className="">
           <Col>
-            <span style={{ color: "red" }}>Bets are only available on Google Chrome.</span>
+            <span style={{ color: "red" }}>Bets are only available on Google Chrome and Mozilla Firefox.</span>
           </Col>
         </Row>
         )}
