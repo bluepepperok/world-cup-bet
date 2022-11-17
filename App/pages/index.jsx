@@ -235,7 +235,7 @@ export default function Home() {
 
       const MsgApprove = ({ closeToast, toastProps }) => (
         <div className="text-center">
-          Confirming tx Approve. please, wait a few seconds. <br></br>
+          Approve TX confirming. Please, wait a few seconds. (step 1 of 2)<br></br>
           <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
         </div>
       );
@@ -275,7 +275,7 @@ export default function Home() {
 
       const MsgBet = ({ closeToast, toastProps }) => (
         <div className="text-center">
-          Processing your bet <br></br>
+          Processing your bet. <br></br>(step 2 of 2) <br></br>
           <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
         </div>
       );
