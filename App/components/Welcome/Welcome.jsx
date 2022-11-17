@@ -88,7 +88,7 @@ export default function Welcome() {
     <Row className="mt-5 align-items-center text-center justify-content-center text-welcome">
       <Col lg={12} className="text-center ">
         <Image src="shiba-soccer.png" style={{maxWidth:"150px"}} alt="" ></Image>
-        <h1 className="h2">Welcome to the Wow Cup Bet! 👀</h1>
+        <h1 className="h2">Welcome to the Wow Cup Bet!</h1>
       </Col>
       <Col lg={6} className="text-center">
         <p style={{ whiteSpace: "pre-wrap", textAlign: "left", marginTop: "30px", color: "#676767" }}>

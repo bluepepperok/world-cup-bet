@@ -351,18 +351,45 @@ export default function Home() {
       )}
 
       {!contractConexionFailure && jackpot != "" && (
-        <Row>
-          <Col className="text-center mt-4">
-            <span> Jackpot: {jackpot} wDoge</span>
-            <br></br>
-            <span>Bet Amount: {fixedBetAmountGlobal} wDoge</span>
-            <br></br>
-            <span>
-              Total Bets: {totalBets} <br></br>
-            </span>
+        <Row className="my-5 pt-3 pb-4 align-items-center justify-content-center text-center">
+          <Col className="text-center my-3" xs="12" md="4" lg="3">
+            <Card className="boxes">
+              <Card.Body>
+                <Card.Title>Bet Amount</Card.Title>
+                <Card.Text>
+                  <h3>{fixedBetAmountGlobal} wDoge</h3>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col className="text-center my-3" xs="12" md="4" lg="3">
+            <Card className="boxes" style={{ border: "2px solid #ffd9007c" }}>
+              <Card.Body>
+                <Card.Title>Jackpot 👀</Card.Title>
+                <Card.Text>
+                  <h3>{jackpot} wDoge</h3>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col className="text-center my-3" xs="12" md="4" lg="3">
+            <Card className="boxes">
+              <Card.Body>
+                <Card.Title>Total Bets</Card.Title>
+                <Card.Text>
+                  <h3>{totalBets} </h3>
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       )}
+
+      <Row>
+        <Col className="text-center">
+          <h2>Choose your team</h2>
+        </Col>
+      </Row>
       <Row lg={6} className="mt-5 text-center align-items-center justify-items-center">
         {!contractConexionFailure &&
           countries.map((country, i) => (

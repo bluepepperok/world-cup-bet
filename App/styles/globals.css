@@ -88,3 +88,9 @@ a {
 .flag:hover {
   transform: scale(1.1);
 }
+
+.boxes {
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 6px 6px 8px #d5d5d5, -6px -6px 8px #ebebeb;
+}
