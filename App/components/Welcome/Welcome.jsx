@@ -25,7 +25,6 @@ export default function Welcome() {
   }, []);
 
   function isGoogleChromeOrFirefox() {
-    debugger;
     let isChromium = window.chrome;
     let winNav = window.navigator;
     let isOpera = typeof window.opr !== "undefined";

@@ -164,12 +164,12 @@ export default function Home() {
     }
   }
 
-  function customToastWithSpinner(text) {
+  function customToastWithSpinner(text, showSpinner = true) {
     const MsgApprove = ({ closeToast, toastProps }) => (
       <div className="text-center">
         {text}
         <br></br>
-        <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
+        {showSpinner && <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>}
       </div>
     );
 
@@ -232,6 +232,11 @@ export default function Home() {
       return;
     }
 
+    //Show Selected Team
+    let nameTeamSelected = countries.filter((country) => country.id == numTeam)[0].name;
+    let message = "You selected " + nameTeamSelected;
+    const teamSelectedToast = customToastWithSpinner(message, false);
+
     //Make transaction
     const provider = new ethers.providers.Web3Provider(window.ethereum); // Metamask
 
@@ -264,6 +269,7 @@ export default function Home() {
       toast.error("Oops! There was a problem approving your tokens", {
         position: toast.POSITION.TOP_CENTER,
       });
+      toast.dismiss(teamSelectedToast);
       return;
     }
 
@@ -274,6 +280,7 @@ export default function Home() {
         position: toast.POSITION.TOP_CENTER,
       });
 
+      toast.dismiss(teamSelectedToast);
       return;
     }
 
@@ -296,6 +303,7 @@ export default function Home() {
       toast.error("Error placing your bet", {
         position: toast.POSITION.TOP_CENTER,
       });
+      toast.dismiss(teamSelectedToast);
       return;
     }
 
@@ -312,6 +320,8 @@ export default function Home() {
       toast.success("Yeah! Your bet was placed", {
         position: toast.POSITION.TOP_CENTER,
       });
+
+      toast.dismiss(teamSelectedToast);
       setBetResult(true);
 
       setTeamBet(numTeam); //Set the team we bet
@@ -324,6 +334,7 @@ export default function Home() {
       toast.error("Oops! There was a problem with your bet. Please try again.", {
         position: toast.POSITION.TOP_CENTER,
       });
+      toast.dismiss(teamSelectedToast);
     }
   }
 
