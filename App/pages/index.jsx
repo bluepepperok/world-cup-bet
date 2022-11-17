@@ -232,9 +232,19 @@ export default function Home() {
 
     try {
       const txApprove = await token.approve(wcbAddress, betAmount); //Set a limit amount of tokens that the contract may use.
-      approvingToast = toast.success("Approve tx confirming... please, wait a few seconds...", {
+
+      const MsgApprove = ({ closeToast, toastProps }) => (
+        <div className="text-center">
+          Confirming tx Approve. please, wait a few seconds. <br></br>
+          <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
+        </div>
+      );
+
+      approvingToast = toast(MsgApprove, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
+        closeOnClick: false,
+        draggable: false,
       });
 
       result = await provider.waitForTransaction(txApprove.hash, 1, 300000);
@@ -262,9 +272,19 @@ export default function Home() {
     let txBet;
     try {
       txBet = await worldCupBet.bet(numTeam);
-      processingToast = toast.success("Processing your bet", {
+
+      const MsgBet = ({ closeToast, toastProps }) => (
+        <div className="text-center">
+          Processing your bet <br></br>
+          <Spinner variant="success" size="sm" animation="border" role="status"></Spinner>
+        </div>
+      );
+
+      processingToast = toast(MsgBet, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
+        closeOnClick: false,
+        draggable: false,
       });
     } catch (error) {
       toast.dismiss(processingToast);
