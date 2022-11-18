@@ -18,10 +18,14 @@ export default function Welcome() {
     if (window.ethereum) {
       isConnected();
 
-      window.ethereum.on("accountsChanged", function (accounts) {
-        isConnected();
-      });
+      window.ethereum.on("accountsChanged", checkConnection);
     }
+
+    function checkConnection(accounts) {
+      isConnected();
+    }
+
+    return () => window.removeEventListener("accountsChanged", checkConnection);
   }, []);
 
   function isGoogleChromeOrFirefox() {
