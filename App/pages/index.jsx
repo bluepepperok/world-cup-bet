@@ -253,6 +253,7 @@ export default function Home() {
 
     let result;
     let approvingToast;
+    debugger;
 
     try {
       const txApprove = await token.approve(wcbAddress, betAmount); //Set a limit amount of tokens that the contract may use.
@@ -261,7 +262,7 @@ export default function Home() {
 
       approvingToast = customToastWithSpinner(message);
 
-      result = await provider.waitForTransaction(txApprove.hash, 1, 300000);
+      result = await provider.waitForTransaction(txApprove.hash, 1, 900000);
       toast.dismiss(approvingToast);
     } catch (error) {
       toast.dismiss(approvingToast);
