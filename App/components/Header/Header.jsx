@@ -37,6 +37,7 @@ export default function Header() {
       //Create only one listener for connections events
       if (!listeningConnection) {
         window.ethereum.on("accountsChanged", function (accounts) {
+          location.reload();
           isConnected();
 
           if (accounts.length > 0) {
