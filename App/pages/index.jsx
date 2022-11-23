@@ -31,7 +31,7 @@ const countriesRaw = Object.freeze([
   createCountry("Australia", "/countryFlags/as-flag.webp", 20),
   createCountry("Croatia", "/countryFlags/hr-flag.webp", 21),
   createCountry("Iran", "/countryFlags/ir-flag.webp", 22),
-  createCountry("Denmark", "/countryFlags/da-flag.webp", 23),
+  createCountry("United States", "/countryFlags/us-flag.webp", 23),
   createCountry("Tunisia", "/countryFlags/ts-flag.webp", 24),
   createCountry("Saudi Arabia", "/countryFlags/sa-flag.webp", 25),
   createCountry("Senegal", "/countryFlags/sg-flag.gif", 26),
